@@ -3,13 +3,11 @@
 # Rodrigo S. Hendges - 11/12/2021
 #
 echo "Generating .html files..."
-# List all .xml files and put on temporary file.
-ls -all | grep xml | awk {'print$9'} > tmplst.txt
+# List all .xml files and put variable.
+TMPLST=$(ls -all | grep xml | awk {'print$9'})
 #
 # Get file names and run xsltproc
-for item in $(cat tmplst.txt); do
+for item in $TMPLST; do
 xsltproc $item > $item.html; done
 #
-# Remove temporary file.
-rm tmplst.txt
 echo "Done!"
